@@ -1,0 +1,50 @@
+# import the necessary packages
+from collections import deque
+from imutils.video import VideoStream
+import numpy as np
+import argparse
+import cv2
+import imutils
+import time
+from detect_obcopy import pixelsPerMetric
+from detect_obcopy import dimB
+from scipy.spatial import distance as dist
+import math
+
+
+#lin a
+ax1=100
+ay1=70
+ay2= 400
+ax2=100
+#line b
+bx1=1000
+by1=70
+by2 = 400
+bx2=1000
+
+
+
+
+
+#Get image
+image = cv2.imread("rory2.png")
+
+
+
+#Draw first line
+lineThickness = 3
+cv2.line(image, (ax1, ay1), (ax2, ay2), (0,255,0), lineThickness)
+
+#Draw second line
+lineThickness = 3
+cv2.line(image, (bx1, by1), (bx2, by2), (0,255,0), lineThickness)
+
+linedist= dist.euclidean((ax1, ay1), (bx1, by2))
+print("final distance is")
+print( linedist)
+
+
+cv2.imshow("Image", image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()  
